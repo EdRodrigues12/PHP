@@ -1,0 +1,56 @@
+*{margin: 0; padding: 0;}
+.menu_topo{
+  background: black;
+  border-top: 1px solid silver;
+  font-weight: bold;
+  font-size: 13px;
+  height: 25px;
+  margin: 0px auto;
+  padding: 0px 0px;
+  list-style:none;
+  border:1px solid yellow;
+  float:left;
+  width:100%;
+ }
+ 
+ .menu_topo li{
+position:relative;
+float:left;
+border-right:1px solid yellow;
+ }
+ 
+.menu_topo li a{color:white; text-decoration:none; padding:5px 10px; display:block;}
+ 
+.menu_topo li a:hover{
+background:#333;
+color:#fff;
+-moz-box-shadow:0 3px 10px 0 #CCC;
+-webkit-box-shadow:0 3px 10px 0 #ccc;
+text-shadow:0px 0px 5px #fff;
+}
+
+.menu_topo li  ul{
+position:absolute;
+top:25px;
+left:0;
+background-color:black;
+display:none;
+}  
+
+.menu_topo li:hover ul,  .menu_topo li.over ul{display:block;}
+.menu_topo li ul li{
+border:1px solid #c0c0c0;
+display:block;
+width:185px;
+}
+
+ body{
+ background-image:url("../img/logo_fundo.jpg");
+ }
+ #titulo{background-image:url("../img/novo_logo.png");
+ position: relative;
+width:539px;
+height:91px;
+top:0px;
+left:265px;
+}

@@ -1,0 +1,35 @@
+
+		.meuestilo{
+			color:white;
+			font-size:50pt;
+			background-image:url("../imagens/jpg/system.jpg");
+			
+					}
+		.nome{
+			font-size:15pt;
+			color:white;
+			background-color:black;
+			text-align:center;
+			padding:3px;
+			float: left;
+			margin:3px; 
+			border:green 1px solid; 
+					
+			}	
+
+		.senha{
+			font-size:15pt;
+			color:white;
+			background-color:black;
+			text-align:center;
+			padding:3px;
+			float: left;
+			margin:3px; 
+			border:green 1px solid; 
+									
+			}
+			body{
+				background-image:url("../imagens/jpg/sistema.jpg");
+		
+			
+				}

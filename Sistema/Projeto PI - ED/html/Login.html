@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<title> Login </title>
+			<link rel="stylesheet"  type="text/css"  href="..\css\estilo.css">
+		<script>
+		function validador(){
+			if(document.getElementById("username").value == ""){
+					alert("O campo nome esta em branco");
+				}	
+			if(document.getElementById("password").value == ""){
+					alert("O campo senha esta em branco");
+				}
+			}
+		</script>
+	</head>
+	
+<!--ecf2f5-->
+	<body>
+		<div id="container">
+			<form>
+				
+				<div class= "meuestilo"><center><b> Faça o Login: </b></center></div>
+				
+				<label for="username">Usuário:</label>
+				
+				<input type="text" id="username" name="username">
+				
+				<label for="password">Senha:</label>
+				
+				<input type="password" id="password" name="password">
+				
+				<p><a href="#">Esqueceu sua senha?</a></p>				
+				
+				<div id="lower">
+					<div class="t1"><input type="checkbox"></div><label class="check" for="checkbox">Continuar conectado</label>
+				</div>
+					<br>
+						<center><input type="image"  src="../img/botao_login.png"  value="Login" onclick="validador()">
+										
+			</form>
+		</div>
+	</body>
+</html>

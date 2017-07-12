@@ -1,0 +1,32 @@
+body{
+float:top;
+font-family:tahoma;
+font-size:15px;
+font-weight:bold;
+background-color:darkgray;
+}
+/*#imagemtopo{
+width:35%;
+margin:5;
+padding:80;
+background-image: url("/logo/Logo_.jpg");
+float: right; 
+background-position:2px;
+}*/
+#nascimento{
+
+ 
+float:center;
+padding:0px;
+width:50%;
+height:55%;
+}
+#primeiro{
+height:165%;
+padding:0px;
+float:left;
+}
+
+#t1{
+text-align: center;}
+

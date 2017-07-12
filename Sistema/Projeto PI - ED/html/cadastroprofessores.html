@@ -1,0 +1,135 @@
+<?php
+	include("../ini/conexao.php");
+	if(isset ($_GET['Funcao'])){
+		if ($_GET['Funcao']=="Cadastra"){
+	    $cadastra = "INSERT INTO `bdcadastroetec`.`tbprofessores`(`Codigo`,`Nome`,`CEP`,`Dtnasc`,`Endereco`,`Bairro`,`Cidade`,`Estado`,`Telefone`,`Celular`,`Nacionalidade`,`Email`,`Estcivil`,`Sexo`,`Materia`) VALUES ('".$_POST['codigo']."','".$_POST['nome']."','".$_POST['cep']."','".$_POST['nascimento']."','".$_POST['endereco']."','".$_POST['bairro']."','".$_POST['cidade']."','".$_POST['estado']."','".$_POST['telefone']."','".$_POST['celular']."','".$_POST['nacio']."','".$_POST['Email']."','".$_POST['EstadoCivil']."','".$_POST['Sexo']."','".$_POST['materia']."');";
+	    mysql_query($cadastra);
+		
+		echo "<script>alert('Os dados foram Cadastrados com sucesso');</script>";
+	   }		
+	}  
+?>
+
+
+<html>
+	<head>
+		<title> Cadastro de professores </title>
+		<link rel="stylesheet" href="..\css\style.css">
+		
+	</head>
+	
+	<body>
+	
+		 
+		<form name="responsavel", method="post",action="cadastroprofessores.php?Funcao=Cadastra">
+			<b><hr> <div class="t1">Cadastro de professores </b><hr></div>
+				
+			<fieldset>
+			<form name="professores", method="post",action="">
+			 <label for="logon">Codigo:</label>
+			<div class="t2"><input type="text" id="logon" name="codigo"></div>
+			<br />
+				
+						
+			<label for="logon">Materia:</label>
+			<div class="t2"><input type="text" id="logon" name="materia"></div>
+			<br />
+			
+			
+			<label for="logon">Nome:</label>
+			<div class="t2"><input type="text" id="logon" name="nome"></div>
+			<br />
+			
+			
+			<label for="logon">CEP:</label>
+			<div class="t2"><input type="text" id="logon" name="cep"></div>
+			<br />
+			
+			
+			<label for="nascimento">Data de Nasc.:</label>
+			<div class="t2"><input name="nascimento" type="date"/></div>
+			<br />
+			
+			
+			<label for="logon">Endereço:</label>
+			<div class="t2"><input type="text" id="logon" name="endereco"></div>
+			<br />
+			
+			
+			
+			<label for="logon">Bairro:</label>
+			<div class="t2"><input type="text" id="logon" name="bairro"></div>
+			<br />
+		
+			
+			<label for="logon">Cidade:</label>
+			<div class="t2"><input type="text" id="logon" name="cidade"></div>
+			<br />
+			
+			
+			<label for="logon">Estado:</label>
+			<div class="t2"><input type="text" id="logon" name="estado"></div>
+			<br />
+		
+			
+			<label for="logon">Telefone:</label>
+			<div class="t2"><input type="text" id="logon" name="telefone"></div>
+			<br />
+			
+			
+			<label for="logon">Celular:</label>
+			<div class="t2"><input type="text" id="logon" name="celular"></div>
+			<br />
+			
+			
+			<label for="logon">Nacionalidade:</label>
+			<div class="t2"><input type="text" id="logon" name="nacio"></div>
+			<br />
+			
+			
+		
+			
+			<label for="logon">E-mail:</label>
+			<div class="t2"><input type="text" id="logon" name="email"></div>
+			
+			<br />
+			
+			
+			
+			
+	 
+			<label for="logon">Estado civil:</label>
+			<select name="EstadoCivil">
+					<option selected value="  ">  </option>
+					<option value="Casado">Casado</option>
+					<option value="Solteiro">Solteiro</option>
+					<option value="Viúvo">Viúvo</option>
+					<option value="Separado">Separado</option>
+										
+				</Select>
+			
+			<br />
+			<br />
+			
+			<label for="logon">Sexo:</label>
+			<select name="Sexo">
+					<option selected value="  ">  </option>
+					<option value="Masculino">Masculino</option>
+					<option value="Feminino">Feminino</option>
+					
+										
+				</Select>
+			
+			<br />
+			<br />
+		 
+		 </fieldset>
+			
+			<input name="Ok" type="submit"  value="Ok">
+				<br />
+                <br />				
+		
+		<center><a href = "Administrativo.html">Voltar A Pagina Principal</a>
+	</body>
+	</form>
+</html>

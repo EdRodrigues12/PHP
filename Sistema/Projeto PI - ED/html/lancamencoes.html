@@ -1,0 +1,102 @@
+<?php
+	include("../inc/conexao.php");
+		 if ($_GET['Funcao'] == "altera"){
+			$SQLalterar ="UPDATE `bdetec`.`tblancamencoes` SET `Nome` = '".$_POST['Nome']."',`Serie`='".$_POST['Serie']."',`mencao`='".$_POST['mencao']."' WHERE  `tblancamencoes`.`Codigo`='".$_GET['Codigo']. "';";
+			mysql_query($SQLalterar);
+			echo "<script>alert('Os dados foram alterado com sucesso');</script>";
+		}
+?>
+<html>
+<head>
+	<title>Lançar Mençoes</title>
+		
+</head>
+<body>
+<form Name="lancamencoes" method="Post" action="lancamencoes.php?Funcao=pesquisar">
+
+	
+    <table border="1">
+	   <tr>
+			<td>
+			Nome:
+			</td>
+			<td>
+			
+			<input type = "text" name = "Nome" ID = "Nome" size= "50">
+			</td>
+	   </tr>
+	</table>
+</form>	
+
+
+<?php
+					 if($_GET['Funcao']=="pesquisar"){
+			             $SQLpesquisar="SELECT * FROM `tblancamencoes` WHERE `Nome` LIKE '%".$_POST['Nome']."%';";
+				         $Total=mysql_query($SQLpesquisar);
+						 while ($Res=mysql_fetch_array($Total))
+					 {
+					 
+					 
+					?>
+					
+					<form Name="lancamencoes" method="POST" action ="lancamencoes.php?Funcao=altera&Codigo=<?php echo $Res['Codigo'];?>">	
+					<table border ="6" CELLSPACING=3 CELLPADDING=3 BGCOLOR="#E1FFD9" BORDERCOLOR="red"><h1 align ="center"></h1>
+						
+						
+						
+						
+						
+						<tr>
+						<td> Nome </td>
+						<td> <input type = "text" name= "Nome" ID="Nome" size= "50"  value="<?php echo $Res['Nome'];?>" ></td>	
+						</tr>
+						
+							<tr>
+						
+							<td>Serie</td>
+						<td> <input type = "text" name= "Serie" ID="Serie" size= "50" value="<?php echo $Res['Serie'];?>"></td>
+						
+							</tr>
+						
+						
+				
+							
+				
+			<tr>
+					<td> Menção </td>
+			<td>
+					<select name = "Mencao" ID = " Mencao" value="<?php echo $Res['mencao']; ?>" >
+					<option value = "MB" > MB </option>
+					<option value = "B" > B </option>
+					<option value = "R" > R </option>
+					<option value = "I" > I </option>
+					
+					
+					</table>
+					
+					
+						
+						<?php }} ?>  
+					
+					
+	
+			
+			
+			</tr>
+	        </td>
+				<tr>
+				<td>
+				<Input type="submit" name="Enviar" ID="Enviar" VALUE="Enviar" >
+				
+				</td>
+				
+				
+				<td>
+				<Input type="Reset" name="Cancelar" ID="Cancelar" VALUE="Cancelar">
+				</tr>
+				</td>
+				
+				
+				</body>
+				</form>
+				</html>

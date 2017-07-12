@@ -1,0 +1,21 @@
+
+
+ body {
+
+ background-image:url("../img/fundo00.jpg");
+
+ }
+
+ #titulo{background-image:url("../img/novo_logo.png");
+
+ position: relative;
+
+width:539px;
+
+height:91px;
+
+top:0px;
+
+left:265px;
+
+}

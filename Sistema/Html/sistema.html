@@ -1,0 +1,57 @@
+<?php
+include("../inc/conexao.php");
+	if($_POST['Nome']!= "" && $_POST['Senha'] !=" "){
+		
+		$Senha=md5($_POST ['Senha'])
+		echo $SQLLogin = "SELECT * FROM `tb_senha` WHERE `Nome` = '" . $_POST ['Nome'] . "' AND ´Senha` = '" . $Senha . "';";
+		/*$strLogin=mysql_query($SQLLogin);
+		
+		$cod=mysql_num_rows($strLogin);
+		
+		if($cod > 0){
+		
+			echo"<script> alert('Acesso Permitido') ;</script>";
+		}
+		else{
+			echo"<script> alert('Acesso Negado!'); </script>";
+		}*/
+		
+	}
+?>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css" >
+		
+	<title>Sistema</title>
+
+</head>
+
+<body>
+<form name="Forme" method="POST">									
+										
+										<div class="meuestilo">Sistema</div>
+										
+<br />										
+<fieldset>
+	
+			<div class="nome">Nome:
+			<input type = " text" name = "Nome" ID = "nome" size= "30">
+			</div>	
+				
+				<br />
+				<br />
+			<div class="nome">Senha:
+			<input type = "password" name = "Senha" ID = "senha" size = "30">
+			</div>
+			
+				<br />
+				<br />				
+			<Input type="submit"  VALUE="OK"  >
+			
+	
+		
+</form>	
+</body>
+</html>
