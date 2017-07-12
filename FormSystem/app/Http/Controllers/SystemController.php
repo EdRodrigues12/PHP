@@ -26,7 +26,10 @@ class SystemController extends Controller
 
         $title = 'Home Page';
         $xss = '<script>alert("Attack XSS");</script>';
-        return view('site.index', compact('title', 'xss'));
+        $var1 = '123';
+
+        $array = [1,2,3,4,5,6,7,8,9];
+        return view('site.index', compact('title', 'xss', 'var1', 'array'));
 
     }
 
