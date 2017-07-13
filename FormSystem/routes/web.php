@@ -55,9 +55,7 @@ Route::get('/nome/nome1/nome2', function (){
     return 'rota Grande';
 })->name('rota.nomeada');
 
-Route::get('/empresa', function (){
-    return view('empresa');
-});
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -66,8 +64,16 @@ Route::get('/', function () {
 
 Route::resource('/produtos', 'ProductController');
 
+//Route::get('/produtos', 'ProductController@test');
+
+
+
 Route::get('/', 'SystemController@index' );
 Route::get('/contato', 'SystemController@contato' );
 
 Route::get('/categoria/{id}', 'SystemController@categoria' )->middleware('auth');
 Route::get('/categoria2/{id?}', 'SystemController@categoriaOp' );
+
+Route::get('/empresa', function (){
+    return view('empresa');
+});
