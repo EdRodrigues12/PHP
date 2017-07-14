@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Painel\ProductFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Painel\Product;
 
@@ -14,10 +15,10 @@ class ProductController extends Controller
      */
     private $product;
 
-   public function __construct(Product $product)
-   {
-       $this->product = $product;
-      }
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
 
 
     public function index()
@@ -25,7 +26,7 @@ class ProductController extends Controller
         $title = 'Product List';
         $products = $this->product->all();
 
-        return view('painel.products.index', compact('products','title'));
+        return view('painel.products.index', compact('products', 'title'));
     }
 
     /**
@@ -35,24 +36,71 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $title = "New Product";
+        $category = ['eletronic', 'clear', 'shower'];
+        return view('painel.products.create', compact('title', 'category'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     *
+     * @param ProductFormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(ProductFormRequest $request)
     {
-        //
+        //dd($request->all());
+        //dd($request->only(['name', 'number']));
+        //dd($request->except(['_token', 'category']));
+        //dd($request->input('name'));
+
+
+        // if($dataForm['active'] == '')
+        //$dataForm['active'] = 0;
+        // else
+        // $dataForm['active'] = 1;
+
+        //Pega todos os dados que vem do formu
+        $dataForm = $request->all();
+
+        $dataForm['ative'] = (!isset($dataForm['active'])) ? 0 : 1;
+
+        //valida dados
+        //$this->validate($request, $this->product->rules );
+
+       /*
+        $messages = [
+            'name.required' => 'Campo nome obrigatorio',
+            'number.numeric' => 'Somente número',
+            'number.required' => 'Campo número é obrigatório',
+        ];*/
+
+        /*$validate = validator($dataForm, $this->product->rules);
+        if ($validate->fails()) {
+            return redirect()
+                ->route('produtos.create')
+                ->withErrors($validate)
+                ->withInput();
+        }*/
+
+
+        $insert = $this->product->create($dataForm);
+
+        if ($insert)
+
+            return redirect()->route('produtos.index');
+
+        else
+            return redirect()->back();
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -63,7 +111,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -74,8 +122,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -86,7 +134,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -94,7 +142,8 @@ class ProductController extends Controller
         //
     }
 
-    public function  test(){
+    public function test()
+    {
         /*
         $prod = $this->product;
         $prod->name = 'Npme do Produto';
@@ -171,7 +220,6 @@ class ProductController extends Controller
 
         else
             return 'Erro';*/
-
 
 
         /*

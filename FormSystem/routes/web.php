@@ -69,9 +69,11 @@ Route::resource('/produtos', 'ProductController');
 
 
 Route::get('/', 'SystemController@index' );
+
 Route::get('/contato', 'SystemController@contato' );
 
 Route::get('/categoria/{id}', 'SystemController@categoria' )->middleware('auth');
+
 Route::get('/categoria2/{id?}', 'SystemController@categoriaOp' );
 
 Route::get('/empresa', function (){
