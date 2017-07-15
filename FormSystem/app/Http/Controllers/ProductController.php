@@ -14,6 +14,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $product;
+    private $totalPage = 5;
 
     public function __construct(Product $product)
     {
@@ -24,7 +25,7 @@ class ProductController extends Controller
     public function index()
     {
         $title = 'Product List';
-        $products = $this->product->all();
+        $products = $this->product->paginate($this->totalPage);
 
         return view('painel.products.index', compact('products', 'title'));
     }
@@ -38,7 +39,7 @@ class ProductController extends Controller
     {
         $title = "New Product";
         $category = ['eletronic', 'clear', 'shower'];
-        return view('painel.products.create', compact('title', 'category'));
+        return view('painel.products.create-edit', compact('title', 'category'));
     }
 
     /**
@@ -75,7 +76,7 @@ class ProductController extends Controller
             'name.required' => 'Campo nome obrigatorio',
             'number.numeric' => 'Somente número',
             'number.required' => 'Campo número é obrigatório',
-        ];*/
+            ];*/
 
         /*$validate = validator($dataForm, $this->product->rules);
         if ($validate->fails()) {
@@ -83,19 +84,19 @@ class ProductController extends Controller
                 ->route('produtos.create')
                 ->withErrors($validate)
                 ->withInput();
-        }*/
+            }*/
 
 
-        $insert = $this->product->create($dataForm);
+            $insert = $this->product->create($dataForm);
 
-        if ($insert)
+            if ($insert)
 
-            return redirect()->route('produtos.index');
+                return redirect()->route('produtos.index');
 
-        else
-            return redirect()->back();
+            else
+                return redirect()->back();
 
-    }
+        }
 
     /**
      * Display the specified resource.
@@ -105,7 +106,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+       $product = $this->product->find($id);
+
+       $title = "Product: {$product->name}"; 
+
+       return view('painel.products.show', compact('product', 'title'));
     }
 
     /**
@@ -116,7 +121,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $product = $this->product->find($id);
+        $title = "Edit Product: {$product->name} ";
+        $category = ['eletronic', 'clear', 'shower'];
+        return view('painel.products.create-edit', compact('title', 'category', 'product'));
+
     }
 
     /**
@@ -126,10 +136,26 @@ class ProductController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductFormRequest $request, $id)
     {
-        //
-    }
+        //recupera todos os dados do form
+        $dataForm = $request->all();
+        //pega o item para editar
+        $product = $this->product_>find($id);
+        //verifica produto ativo
+        $dataForm['ative'] = (!isset($dataForm['active'])) ? 0 : 1;
+        //alterar
+        $update = $product->update($dataForm);
+
+        //verificaçao se editou
+        if ($update) 
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->route('produtos.edit', $id)->with(['errors'=>'Edit Error']);
+
+            # code...
+        
+}
 
     /**
      * Remove the specified resource from storage.
@@ -139,7 +165,16 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->product->find($id);
+
+        $delete = $product->delete();
+
+        if ($delete) 
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->route('produtos.show', $id)->with(['errors'=>'Delete Error']);
+
+
     }
 
     public function test()
@@ -177,7 +212,7 @@ class ProductController extends Controller
             return "Sucesso, ID: {$insert->id}";
 
         else
-            return 'Erro';*/
+        return 'Erro';*/
         /*
         $prod = $this->product->find(2);
         $prod->name = 'Npme do Produto';
@@ -190,7 +225,7 @@ class ProductController extends Controller
             return "Sucesso";
 
         else
-            return 'Erro';*/
+        return 'Erro';*/
         /*
         $prod = $this->product->find(2);
         $update = $prod->update([
@@ -205,7 +240,7 @@ class ProductController extends Controller
             return "Atualizado Sucesso";
 
         else
-            return 'Erro';*/
+        return 'Erro';*/
         /*
         $update = $this->product->where('number',123 )->update([
             'name' => 'Detergente',
@@ -219,7 +254,7 @@ class ProductController extends Controller
             return "Atualizado Sucesso";
 
         else
-            return 'Erro';*/
+        return 'Erro';*/
 
 
         /*
@@ -241,6 +276,6 @@ class ProductController extends Controller
             return "Deletado com Sucesso";
 
         else
-            return 'Erro';*/
+        return 'Erro';*/
     }
 }

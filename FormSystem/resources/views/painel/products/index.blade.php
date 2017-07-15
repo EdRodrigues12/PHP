@@ -1,7 +1,10 @@
 @extends('painel.templates.template')
 
 @section('content')
-    <h1 class="title-pg">List Products</h1>
+    <h1 class="title-pg">
+          <a href="{{route('home')}}"><span class="glyphicon glyphicon-arrow-left" title="Back"></span></a>
+    Product management: <b>{{$product->name or 'New Product'}}</b>
+    </h1>
 
     <a href="{{route('produtos.create')}}" class="btn btn-primary btn-add"><span class="glyphicon glyphicon-plus"></span>Cadastrar</a>
     <table class="table table-striped">
@@ -15,11 +18,11 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
                 <td>
-                    <a href="" class="actions edit">
+                    <a href="{{route('produtos.edit', $product->id)}}" class="actions edit">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    <a href="" class="actions delete">
-                        <span class="glyphicon glyphicon-trash"></span>
+                    <a href="{{route('produtos.show', $product->id)}}" class="actions delete">
+                        <span class="glyphicon glyphicon-eye-open"></span>
                     </a>
                 </td>
             </tr>
@@ -28,6 +31,8 @@
         @endforeach
 
     </table>
+
+    {!! $products->links() !!}
 
 
 @endsection

@@ -60,6 +60,10 @@ Route::get('/nome/nome1/nome2', function (){
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', function (){
+    return view('site/indexNew');
+} );
 */
 
 Route::resource('/produtos', 'ProductController');
@@ -70,6 +74,8 @@ Route::resource('/produtos', 'ProductController');
 
 Route::get('/', 'SystemController@index' );
 
+
+
 Route::get('/contato', 'SystemController@contato' );
 
 Route::get('/categoria/{id}', 'SystemController@categoria' )->middleware('auth');
@@ -79,3 +85,8 @@ Route::get('/categoria2/{id?}', 'SystemController@categoriaOp' );
 Route::get('/empresa', function (){
     return view('empresa');
 });
+
+Route::get('/home', [
+        'uses' => 'SystemController@index',
+        'as' => 'home'
+    ]);
